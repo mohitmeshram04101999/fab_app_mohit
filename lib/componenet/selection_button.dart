@@ -9,7 +9,8 @@ class SelectionButton extends StatelessWidget {
   final bool active;
   final String lable;
   final void Function()? onTap;
-  const SelectionButton({this.onTap,this.active=false,required this.lable,super.key});
+  final bool type2;
+  const SelectionButton({this.type2 =false,this.onTap,this.active=false,required this.lable,super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,8 @@ class SelectionButton extends StatelessWidget {
 
         child: GestureDetector(
           onTap: onTap,
-            child: Text(lable,style: AppConstant.labelStylTextField(BuildContext).copyWith(color: active?Colors.white:null),)),
+            child: Text(lable,style:(type2==false)? AppConstant.labelStylTextField(BuildContext).copyWith(color: active?Colors.white:null):
+              AppConstant.richInfoTextLabel(BuildContext).copyWith(color: active?Colors.white:Colors.grey.shade500),)),
 
       ),
     );

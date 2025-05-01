@@ -1,48 +1,29 @@
+import 'package:fab_app/componenet/MyCard.dart';
 import 'package:fab_app/consgt/constWar.dart';
+import 'package:fab_app/controllers/homProvider.dart';
 import 'package:fab_app/daimention/daimentio%20n.dart';
+import 'package:fab_app/models/home_responce_model.dart';
 import 'package:fab_app/my%20custom%20assets%20dart%20file/actionButton.dart';
+import 'package:fab_app/my%20custom%20assets%20dart%20file/myast%20dart%20file.dart';
+import 'package:fab_app/screens/Home_sub_screens/competitor_analysis_detail_screen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 
 class CompetitorAnalysisCard extends StatelessWidget {
 
-  final data = [
-    //
-    {
-      'Business Name':'ABC',
-      'Reviews':'163',
-      'Ratings':'5',
-      'Photo':'12',
-    },
 
-    //
-    {
-      'Business Name':'XYZ',
-      'Reviews':'141',
-      'Ratings':'4.5',
-      'Photo':'12',
-    },
-
-    //
-    {
-      'Business Name':'New tech',
-      'Reviews':'138',
-      'Ratings':'4.5',
-      'Photo':'10',
-    },
-
-
-  ];
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return MyCard(
       elevation: 4.0,
       margin: EdgeInsets.symmetric(horizontal: 10),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 13,vertical: 15),
+        padding: EdgeInsets.symmetric(horizontal: 10,vertical: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -55,72 +36,113 @@ class CompetitorAnalysisCard extends StatelessWidget {
 
             //
             SizedBox(height: 16.0),
-            Table(
+            Consumer<HomeProvider>(
 
-              children: [
-                
-                TableRow(
-                  
+              builder: (context, p, child) {
+
+                if(p.loading)
+                  {
+                    return Padding(
+                        padding: EdgeInsets.all(10),
+                      child: Text("Loading",style: AppConstant.labelStyle2(BuildContext),),
+                    );
+                  }
+
+
+                return Container(
+                  child: Column(
                     children: [
-                      for(var d in data[0].keys)
-                        Text(d,style: AppConstant.richInfoTextLabel(BuildContext),)
-                    ]
+
+                      Row(
+
+                          children: [
+                            Expanded(
+                              flex: 2,
+                                child: Text("Business name",style: AppConstant.richInfoTextLabel(BuildContext),)),
+
+
+                            Expanded(child: Center(child: Text("Review",style: AppConstant.richInfoTextLabel(BuildContext),))),
+                            Expanded(child: Center(child: Text("Rating",style: AppConstant.richInfoTextLabel(BuildContext),))),
+                            Expanded(child: Center(child: Text("Photo",style: AppConstant.richInfoTextLabel(BuildContext),))),
+
+                          ]
+                      ),
+
+                      SizedBox(height: SC.from_width(5),),
+
+                      for(CompetitorAnalysis i in p.homeData?.data?.competitorAnalysis??[])
+                        Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: SC.from_width(5),),
+                              child: Row(
+                                children: [
+                              
+                                  Expanded(
+                                    flex: 2,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                              child: Text(i.businessName??'',maxLines: 1,)),
+                                          Icon(Icons.keyboard_arrow_down,size: SC.from_width(18),),
+                                          SizedBox(width: SC.from_width(5),)
+                                        ],
+                                      )),
+
+                              
+                                  Expanded(child: Center(child: Text('${i.reviews??0}'))),
+                              
+                              
+                                  //
+                                  Expanded(
+                                    child: Container(
+
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Icon(CupertinoIcons.star,color: AppConstant.primaryColor,size: SC.from_width(13),),
+                                          SizedBox(width: SC.from_width(3),),
+                                          Text('${i.rating??0}'),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                              
+                                  //
+                                  Expanded(
+                              
+                                    child: Center(child: Text('${i.photos??0}')),
+                                  ),
+                              
+                              
+                                ],
+                              ),
+                            ),
+
+                            if(i.businessName!=p.homeData?.data?.competitorAnalysis?.last.businessName)
+                              Divider()
+                          ],
+                        ),
+
+
+
+
+
+
+                    ],
                   ),
-                
-                for(var d in data)
-                  TableRow(
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(color: Colors.grey)
-                      )
-                    ),
-                    children: [
-                      
-                      //
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('${d['Business Name']}'),
-                            Icon(Icons.keyboard_arrow_down,size: SC.from_width(18),)
-                          ],
-                        ),
-                      ),
+                );
 
-                      //
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('${d['Reviews']}'),
-                      ),
+              },
 
-                      //
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Icon(CupertinoIcons.star,color: AppConstant.primaryColor,size: SC.from_width(13),),
-                            Text('${d['Ratings']}'),
-                          ],
-                        ),
-                      ),
-
-                      //
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('${d['Photo']}'),
-                      ),
-
-                      
-                      
-                    ]
-                  )
-              ],
             ),
             
             SizedBox(height: SC.from_width(30),),
             
-            MyactionButton(action: (){},lable: 'View 8+ More',)
+            MyactionButton(action: (){
+              RouteTo(context, child: (p0, p1) => CompetitorAnalysisDetailScreen(),);
+            },lable: 'View ${Provider.of<HomeProvider>(context,listen: false).homeData?.data?.moreCompetitorAnalysis??0} More',)
           ],
         ),
       ),

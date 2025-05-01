@@ -1,30 +1,49 @@
 import 'package:fab_app/consgt/constWar.dart';
+import 'package:fab_app/controllers/MyScaffold.dart';
+import 'package:fab_app/controllers/auth_provider.dart';
+
 import 'package:fab_app/daimention/daimentio%20n.dart';
 import 'package:fab_app/my%20custom%20assets%20dart%20file/actionButton.dart';
 import 'package:fab_app/my%20custom%20assets%20dart%20file/myast%20dart%20file.dart';
-import 'package:fab_app/screens/auth%20screesn/select_business_account.dart';
+import 'package:fab_app/screens/DasnBoard/dash_board.dart';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
 
 
 
-class ConnectWithGoogleScreen extends StatelessWidget {
-  void _connectWithGoogle(BuildContext context) {
-    // Add Google sign-in logic here
-    print('Connect with Google clicked');
-    RouteTo(context, child: (p0, p1) => SelectAccountScreen(),);
+
+class ConnectWithGoogleScreen extends StatefulWidget {
+
+  @override
+  State<ConnectWithGoogleScreen> createState() => _ConnectWithGoogleScreenState();
+}
+
+class _ConnectWithGoogleScreenState extends State<ConnectWithGoogleScreen> {
+   var v;
+
+  void _connectWithGoogle(BuildContext context) async{
+    await Provider.of<AuthProvider>(context,listen: false).connectWithGoogle(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MyScaffold(
+
+
+
+
 
       body: SingleChildScrollView(
         child: Column(
           children: [
 
 
-            
+
 
             // Text
             SizedBox(height: SC.from_width(75)),
@@ -47,7 +66,7 @@ class ConnectWithGoogleScreen extends StatelessWidget {
             ),
 
 
-            
+
 
             // Connect with Google Button
             Padding(
@@ -77,6 +96,32 @@ class ConnectWithGoogleScreen extends StatelessWidget {
                 ),
               ),
             ),
+
+
+              Consumer<AuthProvider>(
+                builder: (context, p, child) => Column(
+                  children: [
+                    SizedBox(height: SC.from_width(30),),
+                    MyactionButton(action: ()async{
+                      await GoogleSignIn().signOut();
+                    },lable: 'signOut',),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child:Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          for(String g in p.logs)
+                            Card(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SelectableText(g),
+                            )),
+                        ],
+                      )
+                    ),
+                  ],
+                ),
+
+              ),
           ],
         ),
       ),

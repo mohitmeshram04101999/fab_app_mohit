@@ -37,8 +37,8 @@ class CustomButton2 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min, // Minimize the row's width
             children: [
-              icon??Image.asset('assets/hoem/prgressIcon.png'),
-              if (icon != null && label != null) SizedBox(width: 8.0),
+              // icon??Image.asset('assets/hoem/prgressIcon.png',height: SC.from_width(25),width: SC.from_width(25),),
+              SizedBox(width: 8.0),
               if (label != null) Text(label!,
               style: AppConstant.buttonTExtStyle(BuildContext).copyWith(color: (blueLabel)?AppConstant.primaryColor:Colors.black),),
             ],
