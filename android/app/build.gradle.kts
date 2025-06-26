@@ -7,6 +7,7 @@ plugins {
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+    id("com.google.gms.google-services") // this is change
 }
 
 
@@ -18,7 +19,7 @@ if (keystorePropertiesFile.exists()) {
 
 
 android {
-    namespace = "com.example.fab_app"
+    namespace = "com.fabgmb.app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -43,10 +44,10 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.mygmb.app"
+        applicationId = "com.fabgmb.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -61,6 +62,12 @@ android {
         }
     }
 }
+
+
+//dependencies {
+//    implementation("com.google.firebase:firebase-auth-ktx:22.3.1") // this is change
+//    implementation("com.google.android.gms:play-services-auth:21.0.0")// this is change
+//}
 
 
 flutter {

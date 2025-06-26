@@ -1,6 +1,7 @@
 
 class MyUrl {
-  static String base = 'https://api.opebo.in/api/';
+  // static String base = 'https://api.opebo.in/api/';
+  static String base = 'https://apifab.loader.co.in/api/';
   static String login = 'user/login';
   static String verifyOtp = 'user/verifyOtp';
   static String getUser = 'user/getUserById';

@@ -12,11 +12,10 @@ import 'package:fab_app/controllers/google_report_detail_provider.dart';
 import 'package:fab_app/controllers/homeScreenDetailProvider.dart';
 import 'package:fab_app/controllers/porductProvider.dart';
 import 'package:fab_app/controllers/postPorovider.dart';
-import 'package:fab_app/models/businessDetaiModel.dart';
+
 import 'package:fab_app/models/get_all_business_responce_modle.dart';
 import 'package:fab_app/models/user_modle.dart';
 import 'package:fab_app/my%20custom%20assets%20dart%20file/myast%20dart%20file.dart';
-import 'package:fab_app/screens/DasnBoard/Home/homebodywidget/google%20Report%20widget.dart';
 import 'package:fab_app/screens/DasnBoard/dash_board.dart';
 import 'package:fab_app/screens/auth%20screesn/connect_with_google.dart';
 import 'package:fab_app/screens/auth%20screesn/login_in_screen.dart';
@@ -289,22 +288,29 @@ class AuthProvider with ChangeNotifier
 
   connectWithGoogle(BuildContext context) async
   {
-    try{
-      addLog("google auth start");
-      _googleUser = await _googleSignIn.signIn();
-      addLog("the user is $_googleUser");
-      if(_googleUser!=null)
-      {
-        addLog("get user id Not Null");
-        var d = await _googleUser?.authHeaders;
-        addLog("get header $d");
-        _googleAuthToke = d?['Authorization'].toString().split(" ").last;
-        addLog("get Token $_googleAuthToke");
-        ReplaceTo(context, child: (p0, p1) => SelectAccountScreen(),);
-        addLog("Navigate to next Screens");
-      }
 
-      addLog("the user is $_googleUser");
+    addLog("google auth start");
+    _googleUser = await _googleSignIn.signIn();
+    addLog("the user is $_googleUser");
+    if(_googleUser!=null)
+    {
+      addLog("get user id Not Null");
+      var d = await _googleUser?.authHeaders;
+      addLog("get header $d");
+      _googleAuthToke = d?['Authorization'].toString().split(" ").last;
+      addLog("get Token $_googleAuthToke");
+      ReplaceTo(context, child: (p0, p1) => SelectAccountScreen(),);
+      addLog("Navigate to next Screens");
+    }
+
+    addLog("the user is $_googleUser");
+
+
+
+
+
+    try{
+
 
     }catch(e)
     {

@@ -1,3 +1,6 @@
+// the hole tag is configration
+
+
 allprojects {
     repositories {
         google()

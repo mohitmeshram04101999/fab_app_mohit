@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "447664709560",
+    "project_id": "fab-gnb",
+    "storage_bucket": "fab-gnb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447664709560:android:7818c61a52eda68fe5794d",
+        "android_client_info": {
+          "package_name": "com.fabgmb.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALJ1-HhUBZR8MMlc2YDlP_6YEk9mVakWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447664709560:android:4adeba6a6967be64e5794d",
+        "android_client_info": {
+          "package_name": "com.mygmb.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALJ1-HhUBZR8MMlc2YDlP_6YEk9mVakWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

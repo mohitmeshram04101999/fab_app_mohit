@@ -20,12 +20,15 @@ import 'package:fab_app/controllers/postPorovider.dart';
 import 'package:fab_app/daimention/daimentio%20n.dart';
 import 'package:fab_app/screens/auth%20screesn/login_in_screen.dart';
 import 'package:fab_app/screens/auth%20screesn/splashScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => AuthProvider()),

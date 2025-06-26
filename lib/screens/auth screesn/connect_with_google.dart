@@ -98,30 +98,36 @@ class _ConnectWithGoogleScreenState extends State<ConnectWithGoogleScreen> {
             ),
 
 
-              Consumer<AuthProvider>(
-                builder: (context, p, child) => Column(
-                  children: [
-                    SizedBox(height: SC.from_width(30),),
-                    MyactionButton(action: ()async{
-                      await GoogleSignIn().signOut();
-                    },lable: 'signOut',),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child:Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          for(String g in p.logs)
-                            Card(child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: SelectableText(g),
-                            )),
-                        ],
-                      )
-                    ),
-                  ],
-                ),
+              if(kDebugMode)
+              ElevatedButton(onPressed: (){
+                _connectWithGoogle(context);
+              }, child: Text("Test")),
 
-              ),
+
+              // Consumer<AuthProvider>(
+              //   builder: (context, p, child) => Column(
+              //     children: [
+              //       SizedBox(height: SC.from_width(30),),
+              //       MyactionButton(action: ()async{
+              //         await GoogleSignIn().signOut();
+              //       },lable: 'signOut',),
+              //       Padding(
+              //         padding: const EdgeInsets.all(8.0),
+              //         child:Column(
+              //           crossAxisAlignment: CrossAxisAlignment.start,
+              //           children: [
+              //             for(String g in p.logs)
+              //               Card(child: Padding(
+              //                 padding: const EdgeInsets.all(8.0),
+              //                 child: SelectableText(g),
+              //               )),
+              //           ],
+              //         )
+              //       ),
+              //     ],
+              //   ),
+              //
+              // ),
           ],
         ),
       ),
