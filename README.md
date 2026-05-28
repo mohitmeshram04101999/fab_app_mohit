@@ -26,4 +26,9 @@
 - Dart SDK compatible with Flutter 3.7+
 - Firebase account for authentication (if applicable)
 
+## 🚀 Demo Video
+
+https://github.com/user-attachments/assets/d4ceedf0-f3b7-45b9-aa3b-ff9a8e2648d0
+
+
  
